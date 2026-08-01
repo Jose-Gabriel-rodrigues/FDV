@@ -1,0 +1,17 @@
+0a3e841 Merge branch 'estilo'
+50c391e Adicionado o arquivo LEIA-ME
+45c3c51 Linka o arquivo de estilo à página
+e2ddca8 Adiciona cor ao texto
+7a1ed74 Cria pasta e arquivo js para o projeto
+35bdd41 Cria pasta e arquivo css para o projeto
+3d55cca Move arquivos HTML para a pasta pages
+476d77e Adiciona o cabeçalho e corpo HTML
+ec4a726 Revert "Ops, eu errei..."
+9da44dd Ops, eu errei...
+345406f salvando antes do checkout
+ee6c8a2 Adiciona a tag title
+440d395       C:/Users/boaga/Documents/finalizado/FDV/.git/COMMIT_EDITMSG
+c5025f2 Primeiro commit
+09ba569 Adiciona idioma
+a1ffb4a Adiciona idioma
+764fa88 Primeiro commit

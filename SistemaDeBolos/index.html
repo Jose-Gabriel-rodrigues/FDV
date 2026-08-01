@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sweet Cake - Confeitaria</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+
+    <header>
+      <div class="logo">
+        <i class="fa-solid fa-cake-candles"></i>
+        <h2>Sweet Cake</h2>
+      </div>
+
+      <nav>
+        <a href="#">Início</a>
+        <a href="#">Bolos</a>
+        <a href="#">Promoções</a>
+        <a href="#">Contato</a>
+      </nav>
+
+      <div class="search-box">
+        <input type="text" placeholder="Pesquisar bolo..." />
+
+        <button>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <div class="icons">
+        <button class="cart-btn">
+          <i class="fa-solid fa-cart-shopping"></i>
+
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+      <div class="hero-left">
+        <span class="tag"> Novidade </span>
+
+        <h1>Os melhores bolos da cidade.</h1>
+
+        <p>
+          Escolha entre bolos inteiros ou metade. Faça seu pedido online e
+          retire na loja ou receba em casa.
+        </p>
+
+        <button class="primary-btn">Comprar Agora</button>
+      </div>
+
+      <div class="hero-right">
+        <img src="OIP (7).webp" alt="Bolo" />
+      </div>
+    </section>
+
+    <!-- ================= PRODUTOS ================= -->
+
+    <section class="products">
+      <div class="section-title">
+        <h2>Bolos Disponíveis</h2>
+
+        <p>Escolha o sabor que você deseja.</p>
+      </div>
+
+      <div class="cards">
+        <!-- ================= CARD 1 ================= -->
+
+        <div class="card">
+          <img src="OIP (7).webp" alt="Chocolate" />
+
+          <div class="content">
+            <h3>Bolo de Chocolate</h3>
+
+            <p>Massa fofinha, cobertura cremosa e raspas de chocolate.</p>
+
+            <div class="price">
+              <span>Inteiro</span>
+
+              <strong>R$ 120,00</strong>
+            </div>
+
+            <div class="price">
+              <span>Metade</span>
+
+              <strong>R$ 65,00</strong>
+            </div>
+
+            <div class="stock">
+              <span>
+                Inteiros:
+                <b>4</b>
+              </span>
+
+              <span>
+                Metades:
+                <b>2</b>
+              </span>
+            </div>
+
+            <div class="type-select">
+              <button class="active">Inteiro</button>
+
+              <button>Metade</button>
+            </div>
+
+            <div class="quantity">
+              <button>-</button>
+
+              <input type="number" value="1" min="1" />
+
+              <button>+</button>
+            </div>
+
+            <button class="buy-btn">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+
+        <!-- ================= CARD 2 ================= -->
+
+        <div class="card">
+          <img src="morango.webp" alt="Bolo de Morango" />
+
+          <div class="content">
+            <h3>Bolo de Morango</h3>
+
+            <p>Massa branca, recheio de morango com chantilly fresco.</p>
+
+            <div class="price">
+              <span>Inteiro</span>
+
+              <strong>R$ 135,00</strong>
+            </div>
+
+            <div class="price">
+              <span>Metade</span>
+
+              <strong>R$ 72,00</strong>
+            </div>
+
+            <div class="stock">
+              <span>
+                Inteiros:
+                <b>2</b>
+              </span>
+
+              <span>
+                Metades:
+                <b>1</b>
+              </span>
+            </div>
+
+            <div class="type-select">
+              <button class="active">Inteiro</button>
+
+              <button>Metade</button>
+            </div>
+
+            <div class="quantity">
+              <button>-</button>
+
+              <input type="number" value="1" min="1" />
+
+              <button>+</button>
+            </div>
+
+            <button class="buy-btn">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+
+        <!-- CONTINUA NA PARTE 2 -->
+
+        <!-- ================= CARD 3 ================= -->
+
+        <div class="card">
+          <img src="Bolo de Leite Ninho.webp" alt="Bolo de Leite Ninho" />
+
+          <div class="content">
+            <h3>Bolo de Leite Ninho</h3>
+
+            <p>Recheio cremoso de leite ninho com cobertura especial.</p>
+
+            <div class="price">
+              <span>Inteiro</span>
+
+              <strong>R$ 140,00</strong>
+            </div>
+
+            <div class="price">
+              <span>Metade</span>
+
+              <strong>R$ 75,00</strong>
+            </div>
+
+            <div class="stock">
+              <span>
+                Inteiros:
+                <b>5</b>
+              </span>
+
+              <span>
+                Metades:
+                <b>3</b>
+              </span>
+            </div>
+
+            <div class="type-select">
+              <button class="active">Inteiro</button>
+
+              <button>Metade</button>
+            </div>
+
+            <div class="quantity">
+              <button>-</button>
+
+              <input type="number" value="1" min="1" />
+
+              <button>+</button>
+            </div>
+
+            <button class="buy-btn">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+
+        <!-- ================= CARD 4 ================= -->
+
+        <div class="card">
+          <img src="Red Velvet.jpg" alt="Red Velvet" />
+
+          <div class="content">
+            <h3>Red Velvet</h3>
+
+            <p>Massa aveludada com recheio de cream cheese.</p>
+
+            <div class="price">
+              <span>Inteiro</span>
+
+              <strong>R$ 160,00</strong>
+            </div>
+
+            <div class="price">
+              <span>Metade</span>
+
+              <strong>R$ 85,00</strong>
+            </div>
+
+            <div class="stock">
+              <span>
+                Inteiros:
+                <b>1</b>
+              </span>
+
+              <span>
+                Metades:
+                <b>2</b>
+              </span>
+            </div>
+
+            <div class="type-select">
+              <button class="active">Inteiro</button>
+
+              <button>Metade</button>
+            </div>
+
+            <div class="quantity">
+              <button>-</button>
+
+              <input type="number" value="1" min="1" />
+
+              <button>+</button>
+            </div>
+
+            <button class="buy-btn">Adicionar ao Carrinho</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OUTROS SABORES ================= -->
+
+    <section class="favorites">
+      <div class="section-title">
+        <h2>Outros Sabores</h2>
+
+        <p>Veja também outras opções disponíveis.</p>
+      </div>
+
+      <div class="mini-cards">
+        <div class="mini-card">
+          <img src="assets/chocolate.jpg" alt="Chocolate" />
+
+          <h4>Chocolate</h4>
+        </div>
+
+        <div class="mini-card">
+          <img src="assets/morango.jpg" alt="Morango" />
+
+          <h4>Morango</h4>
+        </div>
+
+        <div class="mini-card">
+          <img src="assets/ninho.jpg" alt="Leite Ninho" />
+
+          <h4>Leite Ninho</h4>
+        </div>
+
+        <div class="mini-card">
+          <img src="assets/redvelvet.jpg" alt="Red Velvet" />
+
+          <h4>Red Velvet</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CARRINHO ================= -->
+
+    <div class="cart-sidebar">
+      <div class="cart-header">
+        <h2>Meu Carrinho</h2>
+
+        <button class="close-cart">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="cart-items">
+        <!-- Itens adicionados pelo JavaScript -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="total">
+          <span>Total:</span>
+
+          <strong>R$ 0,00</strong>
+        </div>
+
+        <div class="payment">
+          <h3>Forma de Pagamento</h3>
+
+          <div class="payment-options">
+            <button class="active">Pix</button>
+
+            <button>Cartão</button>
+
+            <button>Dinheiro</button>
+          </div>
+        </div>
+
+        <button class="checkout-btn">Finalizar Pedido</button>
+      </div>
+    </div>
+
+    <script src="script .js"></script>
+  </body>
+</html>

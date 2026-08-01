@@ -1,0 +1,501 @@
+   84  WA_BUSINESS_TOKEN_WEBHOOK=evolution
+   85  WA_BUSINESS_URL=https://graph.facebook.com
+   86  WA_BUSINESS_VERSION=v20.0
+   87  WA_BUSINESS_LANGUAGE=en_US
+   88  WEBHOOK_GLOBAL_ENABLED=false
+   89  WEBHOOK_GLOBAL_URL=''
+   90  WEBHOOK_GLOBAL_WEBHOOK_BY_EVENTS=false
+   91  WEBHOOK_EVENTS_APPLICATION_STARTUP=false
+   92  WEBHOOK_EVENTS_QRCODE_UPDATED=true
+   93  WEBHOOK_EVENTS_MESSAGES_SET=true
+   94  WEBHOOK_EVENTS_MESSAGES_UPSERT=true
+   95  WEBHOOK_EVENTS_MESSAGES_EDITED=true
+   96  WEBHOOK_EVENTS_MESSAGES_UPDATE=true
+   97  WEBHOOK_EVENTS_MESSAGES_DELETE=true
+   98  WEBHOOK_EVENTS_SEND_MESSAGE=true
+   99  WEBHOOK_EVENTS_CONTACTS_SET=true
+  100  WEBHOOK_EVENTS_CONTACTS_UPSERT=true
+  101  WEBHOOK_EVENTS_CONTACTS_UPDATE=true
+  102  WEBHOOK_EVENTS_PRESENCE_UPDATE=true
+  103  WEBHOOK_EVENTS_CHATS_SET=true
+  104  WEBHOOK_EVENTS_CHATS_UPSERT=true
+  105  WEBHOOK_EVENTS_CHATS_UPDATE=true
+  106  WEBHOOK_EVENTS_CHATS_DELETE=true
+  107  WEBHOOK_EVENTS_GROUPS_UPSERT=true
+  108  WEBHOOK_EVENTS_GROUPS_UPDATE=true
+  109  WEBHOOK_EVENTS_GROUP_PARTICIPANTS_UPDATE=true
+  110  WEBHOOK_EVENTS_CONNECTION_UPDATE=true
+  111  WEBHOOK_EVENTS_LABELS_EDIT=true
+  112  WEBHOOK_EVENTS_LABELS_ASSOCIATION=true
+  113  WEBHOOK_EVENTS_CALL=true
+  114  WEBHOOK_EVENTS_TYPEBOT_START=false
+  115  WEBHOOK_EVENTS_TYPEBOT_CHANGE_STATUS=false
+  116  WEBHOOK_EVENTS_ERRORS=false
+  117  WEBHOOK_EVENTS_ERRORS_WEBHOOK=
+  118  CONFIG_SESSION_PHONE_CLIENT=Evolution API
+  119  CONFIG_SESSION_PHONE_NAME=Chrome
+  120  QRCODE_LIMIT=30
+  121  QRCODE_COLOR='#175197'
+  122  TYPEBOT_ENABLED=true
+  123  TYPEBOT_API_VERSION=latest
+  124  CHATWOOT_ENABLED=false
+  125  CHATWOOT_MESSAGE_READ=true
+  126  CHATWOOT_MESSAGE_DELETE=true
+  127  CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://user:password@host:5432/chatwoot?sslmode=disable
+  128  CHATWOOT_IMPORT_PLACEHOLDER_MEDIA_MESSAGE=true
+  129  OPENAI_ENABLED=false
+  130  DIFY_ENABLED=false
+  131  CACHE_REDIS_ENABLED=true
+  132  CACHE_REDIS_URI=redis://redis:6379/2
+  133  CACHE_REDIS_PREFIX_KEY=evolution
+  134  CACHE_REDIS_SAVE_INSTANCES=false
+  135  CACHE_LOCAL_ENABLED=false
+  136  S3_ENABLED=false
+  137  S3_ACCESS_KEY=
+  138  S3_SECRET_KEY=
+  139  S3_BUCKET=evolution
+  140  S3_PORT=443
+  141  S3_ENDPOINT=s3.domain.com
+  142  S3_REGION=eu-west-3
+  143  S3_USE_SSL=true
+  144  AUTHENTICATION_API_KEY=429683C4C977415CAAFCCE10F7D57E11
+  145  AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
+  146  LANGUAGE=en
+  147  EOL
+  148  # Configurando o docker-compose.yml para PostgreSQL e Redis
+  149  cat > docker-compose.yml << EOL
+  150  version: '3.3'
+  151  services:
+  152    api:
+  153      container_name: evolution_api
+  154      image: atendai/evolution-api:v2.1.1
+  155      restart: always
+  156      ports:
+  157        - 8081:8080
+  158      volumes:
+  159        - evolution_instances:/evolution/instances
+  160      networks:
+  161        - evolution-net
+  162      env_file:
+  163        - .env
+  164    postgres:
+  165      image: postgres:13
+  166      restart: always
+  167      environment:
+  168        POSTGRES_USER: ${pg_user}
+  169        POSTGRES_PASSWORD: ${pg_password}
+  170        POSTGRES_DB: ${pg_database}
+  171      volumes:
+  172        - pg_data:/var/lib/postgresql/data
+  173      networks:
+  174        - evolution-net
+  175        - default
+  176    redis:
+  177      image: redis:alpine
+  178      restart: always
+  179      ports:
+  180        - "6380:6379"
+  181      networks:
+  182        - evolution-net
+  183        - default
+  184  volumes:
+  185    evolution_instances:
+  186    pg_data:
+  187  networks:
+  188    evolution-net:
+  189      driver: bridge
+  190  EOL
+  191  # Inicializando os containers com docker-compose
+  192  echo "Iniciando containers com Docker Compose"
+  193  docker-compose up -d
+  194  echo "Configuração concluída com sucesso!"
+  195  ###############################################
+  196    echo "\n\n"
+  197    echo "${GREEN}";
+  198    echo " █████████      ███████         █████████\n";
+  199    echo "       ███      ███    ██       ███      \n";
+  200    echo "     ███        ███    ███      ███      \n";
+  201    echo "   ███          ███    ███      ███  ████\n";
+  202    echo " ███            ███    ██       ███    ██\n";
+  203    echo " █████████      ███████         █████████\n";
+  204    echo "\n";
+  205    echo "ESSE MATERIAL FAZ PARTE DA COMUNIDADE ZDG\n";
+  206    echo "\n";
+  207    echo "Compartilhar, vender ou fornecer essa solução\n";
+  208    echo "sem autorização é crime previsto no artigo 184\n";
+  209    echo "do código penal que descreve a conduta criminosa\n";
+  210    echo "de infringir os direitos autorais da ZDG.\n";
+  211    echo "\n";
+  212    echo "PIRATEAR ESSA SOLUÇÃO É CRIME.\n";
+  213    echo "\n";
+  214    echo " © COMUNIDADE ZDG - comunidadezdg.com.br\n";
+  215    echo "${NC}";
+  216    echo "\n"
+  217  #!/bin/bash
+  218  #######################################################
+  219    echo "\n\n"
+  220    echo "${GREEN}";
+  221    echo " █████████      ███████         █████████";
+  222    echo "       ███      ███    ██       ███      ";
+  223    echo "     ███        ███    ███      ███      ";
+  224    echo "   ███          ███    ███      ███  ████";
+  225    echo " ███            ███    ██       ███    ██";
+  226    echo " █████████      ███████         █████████";
+  227    echo "\n";
+  228    echo "ESSE MATERIAL FAZ PARTE DA COMUNIDADE ZDG";
+  229    echo "\n";
+  230    echo "Compartilhar, vender ou fornecer essa solução";
+  231    echo "sem autorização é crime previsto no artigo 184";
+  232    echo "do código penal que descreve a conduta criminosa";
+  233    echo "de infringir os direitos autorais da ZDG.";
+  234    echo "\n";
+  235    echo "PIRATEAR ESSA SOLUÇÃO É CRIME.";
+  236    echo "\n";
+  237    echo " © COMUNIDADE ZDG - comunidadezdg.com.br";
+  238    echo "${NC}";
+  239    echo "\n"
+  240  #######################################################
+  241  # Credenciais fixas para PostgreSQL
+  242  pg_user="postgres"
+  243  pg_password="typebot"
+  244  pg_database="evolution_db"
+  245  # Atualizando a VPS e instalando dependências
+  246  echo "Atualizando a VPS + Instalando Dependências"
+  247  sudo apt update -y && sudo apt upgrade -y
+  248  sudo apt install git docker-compose nginx certbot python3-certbot-nginx -y
+  249  # Clonando o repositório na branch v2.0.0
+  250  echo "Clonando o repositório Evolution API branch v2.0.0"
+  251  git clone -b v2.0.0 https://github.com/EvolutionAPI/evolution-api.git
+  252  cd evolution-api
+  253  # Criando o arquivo .env na pasta raiz
+  254  cat > .env << EOL
+  255  SERVER_TYPE=http
+  256  SERVER_PORT=8080
+  257  SERVER_URL=http://localhost:8080
+  258  SENTRY_DSN=
+  259  CORS_ORIGIN=*
+  260  CORS_METHODS=GET,POST,PUT,DELETE
+  261  CORS_CREDENTIALS=true
+  262  LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS
+  263  LOG_COLOR=true
+  264  LOG_BAILEYS=error
+  265  DEL_INSTANCE=false
+  266  DATABASE_PROVIDER=postgresql
+  267  DATABASE_CONNECTION_URI=postgresql://${pg_user}:${pg_password}@postgres:5432/${pg_database}?schema=public
+  268  DATABASE_CONNECTION_CLIENT_NAME=evolution_exchange
+  269  DATABASE_SAVE_DATA_INSTANCE=true
+  270  DATABASE_SAVE_DATA_NEW_MESSAGE=true
+  271  DATABASE_SAVE_MESSAGE_UPDATE=true
+  272  DATABASE_SAVE_DATA_CONTACTS=true
+  273  DATABASE_SAVE_DATA_CHATS=true
+  274  DATABASE_SAVE_DATA_LABELS=true
+  275  DATABASE_SAVE_DATA_HISTORIC=true
+  276  RABBITMQ_ENABLED=false
+  277  RABBITMQ_URI=amqp://localhost
+  278  RABBITMQ_EXCHANGE_NAME=evolution
+  279  RABBITMQ_GLOBAL_ENABLED=false
+  280  RABBITMQ_EVENTS_APPLICATION_STARTUP=false
+  281  RABBITMQ_EVENTS_INSTANCE_CREATE=false
+  282  RABBITMQ_EVENTS_INSTANCE_DELETE=false
+  283  RABBITMQ_EVENTS_QRCODE_UPDATED=false
+  284  RABBITMQ_EVENTS_MESSAGES_SET=false
+  285  RABBITMQ_EVENTS_MESSAGES_UPSERT=false
+  286  RABBITMQ_EVENTS_MESSAGES_EDITED=false
+  287  RABBITMQ_EVENTS_MESSAGES_UPDATE=false
+  288  RABBITMQ_EVENTS_MESSAGES_DELETE=false
+  289  RABBITMQ_EVENTS_SEND_MESSAGE=false
+  290  RABBITMQ_EVENTS_CONTACTS_SET=false
+  291  RABBITMQ_EVENTS_CONTACTS_UPSERT=false
+  292  RABBITMQ_EVENTS_CONTACTS_UPDATE=false
+  293  RABBITMQ_EVENTS_PRESENCE_UPDATE=false
+  294  RABBITMQ_EVENTS_CHATS_SET=false
+  295  RABBITMQ_EVENTS_CHATS_UPSERT=false
+  296  RABBITMQ_EVENTS_CHATS_UPDATE=false
+  297  RABBITMQ_EVENTS_CHATS_DELETE=false
+  298  RABBITMQ_EVENTS_GROUPS_UPSERT=false
+  299  RABBITMQ_EVENTS_GROUP_UPDATE=false
+  300  RABBITMQ_EVENTS_GROUP_PARTICIPANTS_UPDATE=false
+  301  RABBITMQ_EVENTS_CONNECTION_UPDATE=false
+  302  RABBITMQ_EVENTS_CALL=false
+  303  RABBITMQ_EVENTS_TYPEBOT_START=false
+  304  RABBITMQ_EVENTS_TYPEBOT_CHANGE_STATUS=false
+  305  SQS_ENABLED=false
+  306  SQS_ACCESS_KEY_ID=
+  307  SQS_SECRET_ACCESS_KEY=
+  308  SQS_ACCOUNT_ID=
+  309  SQS_REGION=
+  310  WEBSOCKET_ENABLED=false
+  311  WEBSOCKET_GLOBAL_EVENTS=false
+  312  WA_BUSINESS_TOKEN_WEBHOOK=evolution
+  313  WA_BUSINESS_URL=https://graph.facebook.com
+  314  WA_BUSINESS_VERSION=v20.0
+  315  WA_BUSINESS_LANGUAGE=en_US
+  316  WEBHOOK_GLOBAL_ENABLED=false
+  317  WEBHOOK_GLOBAL_URL=''
+  318  WEBHOOK_GLOBAL_WEBHOOK_BY_EVENTS=false
+  319  WEBHOOK_EVENTS_APPLICATION_STARTUP=false
+  320  WEBHOOK_EVENTS_QRCODE_UPDATED=true
+  321  WEBHOOK_EVENTS_MESSAGES_SET=true
+  322  WEBHOOK_EVENTS_MESSAGES_UPSERT=true
+  323  WEBHOOK_EVENTS_MESSAGES_EDITED=true
+  324  WEBHOOK_EVENTS_MESSAGES_UPDATE=true
+  325  WEBHOOK_EVENTS_MESSAGES_DELETE=true
+  326  WEBHOOK_EVENTS_SEND_MESSAGE=true
+  327  WEBHOOK_EVENTS_CONTACTS_SET=true
+  328  WEBHOOK_EVENTS_CONTACTS_UPSERT=true
+  329  WEBHOOK_EVENTS_CONTACTS_UPDATE=true
+  330  WEBHOOK_EVENTS_PRESENCE_UPDATE=true
+  331  WEBHOOK_EVENTS_CHATS_SET=true
+  332  WEBHOOK_EVENTS_CHATS_UPSERT=true
+  333  WEBHOOK_EVENTS_CHATS_UPDATE=true
+  334  WEBHOOK_EVENTS_CHATS_DELETE=true
+  335  WEBHOOK_EVENTS_GROUPS_UPSERT=true
+  336  WEBHOOK_EVENTS_GROUPS_UPDATE=true
+  337  WEBHOOK_EVENTS_GROUP_PARTICIPANTS_UPDATE=true
+  338  WEBHOOK_EVENTS_CONNECTION_UPDATE=true
+  339  WEBHOOK_EVENTS_LABELS_EDIT=true
+  340  WEBHOOK_EVENTS_LABELS_ASSOCIATION=true
+  341  WEBHOOK_EVENTS_CALL=true
+  342  WEBHOOK_EVENTS_TYPEBOT_START=false
+  343  WEBHOOK_EVENTS_TYPEBOT_CHANGE_STATUS=false
+  344  WEBHOOK_EVENTS_ERRORS=false
+  345  WEBHOOK_EVENTS_ERRORS_WEBHOOK=
+  346  CONFIG_SESSION_PHONE_CLIENT=Evolution API
+  347  CONFIG_SESSION_PHONE_NAME=Chrome
+  348  QRCODE_LIMIT=30
+  349  QRCODE_COLOR='#175197'
+  350  TYPEBOT_ENABLED=true
+  351  TYPEBOT_API_VERSION=latest
+  352  CHATWOOT_ENABLED=false
+  353  CHATWOOT_MESSAGE_READ=true
+  354  CHATWOOT_MESSAGE_DELETE=true
+  355  CHATWOOT_IMPORT_DATABASE_CONNECTION_URI=postgresql://user:password@host:5432/chatwoot?sslmode=disable
+  356  CHATWOOT_IMPORT_PLACEHOLDER_MEDIA_MESSAGE=true
+  357  OPENAI_ENABLED=false
+  358  DIFY_ENABLED=false
+  359  CACHE_REDIS_ENABLED=true
+  360  CACHE_REDIS_URI=redis://redis:6379/2
+  361  CACHE_REDIS_PREFIX_KEY=evolution
+  362  CACHE_REDIS_SAVE_INSTANCES=false
+  363  CACHE_LOCAL_ENABLED=false
+  364  S3_ENABLED=false
+  365  S3_ACCESS_KEY=
+  366  S3_SECRET_KEY=
+  367  S3_BUCKET=evolution
+  368  S3_PORT=443
+  369  S3_ENDPOINT=s3.domain.com
+  370  S3_REGION=eu-west-3
+  371  S3_USE_SSL=true
+  372  AUTHENTICATION_API_KEY=429683C4C977415CAAFCCE10F7D57E11
+  373  AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
+  374  LANGUAGE=en
+  375  EOL
+  376  # Configurando o docker-compose.yml para PostgreSQL e Redis
+  377  cat > docker-compose.yml << EOL
+  378  version: '3.3'
+  379  services:
+  380    api:
+  381      container_name: evolution_api
+  382      image: atendai/evolution-api:v2.1.1
+  383      restart: always
+  384      ports:
+  385        - 8081:8080
+  386      volumes:
+  387        - evolution_instances:/evolution/instances
+  388      networks:
+  389        - evolution-net
+  390      env_file:
+  391        - .env
+  392    postgres:
+  393      image: postgres:13
+  394      restart: always
+  395      environment:
+  396        POSTGRES_USER: ${pg_user}
+  397        POSTGRES_PASSWORD: ${pg_password}
+  398        POSTGRES_DB: ${pg_database}
+  399      volumes:
+  400        - pg_data:/var/lib/postgresql/data
+  401      networks:
+  402        - evolution-net
+  403        - default
+  404    redis:
+  405      image: redis:alpine
+  406      restart: always
+  407      ports:
+  408        - "6380:6379"
+  409      networks:
+  410        - evolution-net
+  411        - default
+  412  volumes:
+  413    evolution_instances:
+  414    pg_data:
+  415  networks:
+  416    evolution-net:
+  417      driver: bridge
+  418  EOL
+  419  # Inicializando os containers com docker-compose
+  420  echo "Iniciando containers com Docker Compose"
+  421  docker-compose up -d
+  422  echo "Configuração concluída com sucesso!"
+  423  ###############################################
+  424    echo "\n\n"
+  425    echo "${GREEN}";
+  426    echo " █████████      ███████         █████████\n";
+  427    echo "       ███      ███    ██       ███      \n";
+  428    echo "     ███        ███    ███      ███      \n";
+  429    echo "   ███          ███    ███      ███  ████\n";
+  430    echo " ███            ███    ██       ███    ██\n";
+  431    echo " █████████      ███████         █████████\n";
+  432    echo "\n";
+  433    echo "ESSE MATERIAL FAZ PARTE DA COMUNIDADE ZDG\n";
+  434    echo "\n";
+  435    echo "Compartilhar, vender ou fornecer essa solução\n";
+  436    echo "sem autorização é crime previsto no artigo 184\n";
+  437    echo "do código penal que descreve a conduta criminosa\n";
+  438    echo "de infringir os direitos autorais da ZDG.\n";
+  439    echo "\n";
+  440    echo "PIRATEAR ESSA SOLUÇÃO É CRIME.\n";
+  441    echo "\n";
+  442    echo " © COMUNIDADE ZDG - comunidadezdg.com.br\n";
+  443    echo "${NC}";
+  444    echo "\n"
+  445  git log
+  446  git config –-global core.editor nano
+  447  git init
+  448  git config --global user.name "<gabriel>"
+  449  git config --global user.email "<boagabriel63@gmail.com>"
+  450  git config –-global core.editor nano
+  451  git config --global core.editor nano
+  452  git config --global core.autocrlf input
+  453  git config --global core.safecrlf true
+  454  git config --global core.autocrlf true
+  455  git config --global core.safecrlf true
+  456  git init
+  457  cd /c/Users/boaga/Documents/finalizado/FDV
+  458  git commit -m "Primeiro commit"
+  459  git add .
+  460  git commit -m "Primeiro commit"
+  461  git config --global core.autocrlf true
+  462  git add .
+  463  git commit -m "Primeiro commit"
+  464  nano oi.html
+  465  nano oi.html
+  466  git init
+  467  git add oi.html
+  468  git commit -m "Primeiro commit"
+  469  git config --global core.safecrlf false
+  470  git add .
+  471  git commit -m "Primeiro commit"
+  472  nano oi.html
+  473  git status
+  474  git add oi.html
+  475  git add oi.html
+  476  git commit
+  477  git status
+  478  git status
+  479  nano oi.html
+  480  git add oi.html
+  481  git status
+  482  nano oi.html
+  483  git status
+  484  git commit -m “Adiciona a tag <title>”
+  485  git commit -m "Adiciona a tag title"
+  486  git status
+  487  git add .
+  488  git status
+  489  git commit -m “Comenta a tag <title>”
+  490  git status
+  491  git log
+  492  q
+  493  git log -–pretty=oneline
+  494  git log --pretty=oneline
+  495  git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  496  git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  497  git history
+  498  git checkout d8cf2b5
+  499  git log --oneline
+  500  git checkout 764fa88
+  501  git add .
+  502  git commit -m "salvando antes do checkout"
+  503  cat oi.html
+  504  git checkout master
+  505  cat oi.html
+  506  git tag v1
+  507  git checkout 764fa88
+  508  cat oi.html
+  509  git checkout master
+  510  cat oi.html
+  511  git tag v1
+  512  git checkout v1^
+  513  git tag v1-beta
+  514  git checkout master
+  515  nano oi.html
+  516  git status
+  517  git checkout oi.html
+  518  git status
+  519  cat oi.html
+  520* 
+  521  nano oi.html
+  522  git add oi.html
+  523  ●
+  524  git status
+  525  ●
+  526  git restore –-staged oi.html
+  527  ●
+  528  git status
+  529  ●
+  530  git checkout oi.html
+  531  ●
+  532  git status
+  533  nano oi.html
+  534  git commit -a -m “Ops, eu errei...”
+  535  git commit -a -m "Ops, eu errei..."
+  536  git revert HEAD
+  537  git history
+  538  git tag ops
+  539  git reset –-hard v1
+  540  git history
+  541  git tag -d ops
+  542  git history --all
+  543  nano oi.html
+  544  git add oi.html
+  545  git commit -m "Adiciona o cabeçalho HTML"
+  546  nano oi.html
+  547  git add oi.html
+  548  git commit –-amend -m "Adiciona o cabeçalho e corpo HTML"
+  549  git commit --amend -m "Adiciona o cabeçalho e corpo HTML"
+  550  mkdir pages
+  551  git mv oi.html pages
+  552  git status
+  553  git commit -m "Move arquivos HTML para a pasta pages"
+  554  mkdir css
+  555  nano css/oi.css
+  556  git add .
+  557  git commit -m "Cria pasta e arquivo css para o projeto"
+  558  git branch estilo
+  559  git checkout estilo
+  560  git checkout estilo
+  561  mkdir js
+  562  nano js/oi.js
+  563  git add .
+  564  git commit -m "Cria pasta e arquivo js para o projeto"
+  565  nano css/oi.css
+  566  git add css/oi.css
+  567  git commit -m "Adiciona cor ao texto"
+  568  nano pages/oi.html
+  569  git add .
+  570  git commit -m "Linka o arquivo de estilo à
+página"
+  571  git checkout master
+  572  git checkout estilo
+  573  git checkout master
+  574  nano LEIA-ME.md
+  575  git add LEIA-ME.md
+  576  git commit -m "Adicionado o arquivo LEIA-ME"
+  577  git history --all
+  578  git log
+  579  git merge estilo
+  580  git log
+  581  git log --oneline
+  582  git log --oneline > historico.txt
+  583  history > terminal-completo.txt
